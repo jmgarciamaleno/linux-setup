@@ -1,0 +1,46 @@
+---
+- name: Install apt packages
+  apt:
+      name:
+        - chrome-gnome-shell
+        - curl
+        - git
+        - htop
+        - net-tools
+        - netcat-openbsd
+        - nfs-common
+        - psmisc
+        - snapd
+        - terminator
+        - tree
+        - unzip
+        - vim
+        - libc6-i386
+        - lib32z1
+      update_cache: yes
+
+- name: Install snap packages
+  snap:
+      name:
+        - docker
+        - slack
+        - skype
+        - spotify
+      classic: yes
+
+- name: Copy the UE VPN package
+  copy:
+      src: pulse-8.1R8.i386.deb
+      dest: /tmp/pulse-8.1R8.i386.deb
+
+- name: Install the UE VPN package
+  apt:
+      deb: /tmp/pulse-8.1R8.i386.deb
+
+- name: Disable ipv6 (required by the VPN app)
+  command: sysctl -w net.ipv6.conf.all.disable_ipv6=1
+
+- name: Remove the UE VPN package
+  file:
+      path: /tmp/pulse-8.1R8.i386.deb
+      state: absent
