@@ -15,6 +15,7 @@ Project to setup most tools that I use in a Linux environment.
 - Docker
 - Slack
 - Spotify
+- Skype
 - Pulse VPN client
 - Mitmproxy
 
