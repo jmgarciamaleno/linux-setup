@@ -15,6 +15,8 @@
         - tree
         - unzip
         - vim
+        - vim-gnome
+        - wine-stable
         - libc6-i386
         - lib32z1
       update_cache: yes
@@ -43,4 +45,15 @@
 - name: Remove the UE VPN package
   file:
       path: /tmp/pulse-8.1R8.i386.deb
+      state: absent
+
+- name: Install the mitmproxy package
+  unarchive:
+      src: https://snapshots.mitmproxy.org/5.0.1/mitmproxy-5.0.1-linux.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+
+- name: Remove the mitmproxy package
+  file:
+      path: /tmp/mitmproxy-5.0.1-linux.tar.gz
       state: absent

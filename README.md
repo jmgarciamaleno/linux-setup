@@ -1,15 +1,25 @@
 # Linux-setup
 
-Project to setup most apps that I use in a Linux environment.
+Project to setup most tools that I use in a Linux environment.
+
+## Supported platforms
+
+- Ubuntu 14+
 
 ## Apps
 
-ToDo.
+- Common shell tools (vim, curl, tree, etc)
+- Terminator
+- Git
+- Ansible
+- Docker
+- Slack
+- Spotify
+- Pulse VPN client
+- Mitmproxy
 
 ## Install
 
-ToDo.
-
-## Uninstall
-
-ToDo.
+```
+curl https://raw.githubusercontent.com/jmgarciamaleno/linux-setup/master/install.sh | sudo bash
+```
