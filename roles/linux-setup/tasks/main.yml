@@ -30,30 +30,25 @@
         - spotify
       classic: yes
 
-- name: Copy the UE VPN package
+- name: Copy the Pulse VPN client package
   copy:
       src: pulse-8.1R8.i386.deb
       dest: /tmp/pulse-8.1R8.i386.deb
 
-- name: Install the UE VPN package
+- name: Install the Pulse VPN client
   apt:
       deb: /tmp/pulse-8.1R8.i386.deb
 
 - name: Disable ipv6 (required by the VPN app)
   command: sysctl -w net.ipv6.conf.all.disable_ipv6=1
 
-- name: Remove the UE VPN package
+- name: Remove the Pulse VPN client package
   file:
       path: /tmp/pulse-8.1R8.i386.deb
       state: absent
 
-- name: Install the mitmproxy package
+- name: Install mitmproxy
   unarchive:
       src: https://snapshots.mitmproxy.org/5.0.1/mitmproxy-5.0.1-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
-
-- name: Remove the mitmproxy package
-  file:
-      path: /tmp/mitmproxy-5.0.1-linux.tar.gz
-      state: absent
