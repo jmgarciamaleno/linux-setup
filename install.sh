@@ -13,4 +13,5 @@ sudo ansible-pull \
     -d ~/.ansible/`date +%s` \
     --purge \
     -i localhost, \
-    main.yml
+    main.yml && \
+echo "It has been done ( ͡° ͜ʖ ͡°)"
