@@ -39,6 +39,7 @@
           -o /usr/local/bin/docker-compose
   args:
       executable: /bin/bash
+      warn: no
 
 - name: Install mitmproxy
   unarchive:
