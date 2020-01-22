@@ -8,7 +8,10 @@
         - htop
         - net-tools
         - netcat-openbsd
+        - network-manager-openconnect
+        - network-manager-openconnect-gnome
         - nfs-common
+        - openconnect
         - psmisc
         - snapd
         - terminator
@@ -30,22 +33,12 @@
         - spotify
       classic: yes
 
-- name: Copy the Pulse VPN client package
-  copy:
-      src: pulse-8.1R8.i386.deb
-      dest: /tmp/pulse-8.1R8.i386.deb
-
-- name: Install the Pulse VPN client
-  apt:
-      deb: /tmp/pulse-8.1R8.i386.deb
-
-- name: Disable ipv6 (required by the VPN app)
-  command: sysctl -w net.ipv6.conf.all.disable_ipv6=1
-
-- name: Remove the Pulse VPN client package
-  file:
-      path: /tmp/pulse-8.1R8.i386.deb
-      state: absent
+- name: Install docker-compose
+  shell: |
+      curl -L "https://github.com/docker/compose/releases/download/1.25.1/docker-compose-$(uname -s)-$(uname -m)" \
+          -o /usr/local/bin/docker-compose
+  args:
+      executable: /bin/bash
 
 - name: Install mitmproxy
   unarchive:

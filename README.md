@@ -12,15 +12,15 @@ Project to setup most tools that I use in a Linux environment.
 - Terminator
 - Git
 - Ansible
-- Docker
+- Docker + docker-compose
 - Slack
 - Spotify
 - Skype
-- Pulse VPN client
+- Openconnect VPN client
 - Mitmproxy
 
 ## Install
 
 ```
-curl https://raw.githubusercontent.com/jmgarciamaleno/linux-setup/master/install.sh | sudo bash
+curl -s https://raw.githubusercontent.com/jmgarciamaleno/linux-setup/master/install.sh | sudo bash
 ```
