@@ -22,5 +22,5 @@ Project to setup most tools that I use in a Linux environment.
 ## Install
 
 ```
-curl -s https://raw.githubusercontent.com/jmgarciamaleno/linux-setup/master/install.sh | sudo bash
+wget -qO /dev/stdout https://raw.githubusercontent.com/jmgarciamaleno/linux-setup/master/install.sh | sudo bash
 ```

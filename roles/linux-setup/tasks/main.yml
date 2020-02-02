@@ -18,7 +18,6 @@
         - tree
         - unzip
         - vim
-        - vim-gnome
         - wine-stable
         - libc6-i386
         - lib32z1
