@@ -1,10 +1,20 @@
 ---
+- name: Import the Google Chrome key
+  apt_key:
+      url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+- name: Add the Google Chrome repository
+  apt_repository:
+      repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+      update_cache: yes
+
 - name: Install apt packages
   apt:
       name:
         - chrome-gnome-shell
         - curl
         - git
+        - google-chrome-stable
         - htop
         - net-tools
         - netcat-openbsd
@@ -34,7 +44,7 @@
 
 - name: Install docker-compose
   shell: |
-      curl -L "https://github.com/docker/compose/releases/download/1.25.1/docker-compose-$(uname -s)-$(uname -m)" \
+      curl -sL "https://github.com/docker/compose/releases/download/1.25.1/docker-compose-$(uname -s)-$(uname -m)" \
           -o /usr/local/bin/docker-compose
   args:
       executable: /bin/bash
@@ -45,3 +55,4 @@
       src: https://snapshots.mitmproxy.org/5.0.1/mitmproxy-5.0.1-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
+
