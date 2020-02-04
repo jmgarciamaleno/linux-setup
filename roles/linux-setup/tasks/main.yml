@@ -1,4 +1,23 @@
 ---
+- name: Import the Docker CE key
+  apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+
+# Docker packages for 19.10 are about to be released as stable.
+- name: Add the Docker CE repository (Ubuntu 19.10)
+  shell: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) test"
+  args:
+      executable: /bin/bash
+      warn: false
+  when: ansible_distribution_release == 'eoan'
+
+- name: Add the Docker CE repository
+  shell: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  args:
+      executable: /bin/bash
+      warn: false
+  when: ansible_distribution_release != 'eoan'
+
 - name: Import the Google Chrome key
   apt_key:
       url: https://dl-ssl.google.com/linux/linux_signing_key.pub
@@ -6,14 +25,29 @@
 - name: Add the Google Chrome repository
   apt_repository:
       repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
-      update_cache: yes
+
+- name: Uninstall old Docker versions
+  apt:
+      name:
+        - docker
+        - docker-engine
+        - docker.io
+        - containerd
+        - rund
+      state: absent
 
 - name: Install apt packages
   apt:
       name:
+        - apt-transport-https
+        - ca-certificates
         - chrome-gnome-shell
+        - containerd.io
         - curl
+        - docker-ce
+        - docker-ce-cli
         - git
+        - gnupg-agent
         - google-chrome-stable
         - htop
         - net-tools
@@ -31,28 +65,27 @@
         - wine-stable
         - libc6-i386
         - lib32z1
+        - software-properties-common
       update_cache: yes
-
-- name: Install snap packages
-  snap:
-      name:
-        - docker
-        - slack
-        - skype
-        - spotify
-      classic: yes
 
 - name: Install docker-compose
   shell: |
-      curl -sL "https://github.com/docker/compose/releases/download/1.25.1/docker-compose-$(uname -s)-$(uname -m)" \
+      curl -sL "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" \
           -o /usr/local/bin/docker-compose
   args:
       executable: /bin/bash
       warn: no
+
+- name: Install snap packages
+  snap:
+      name:
+        - slack
+        - skype
+        - spotify
+      classic: yes
 
 - name: Install mitmproxy
   unarchive:
       src: https://snapshots.mitmproxy.org/5.0.1/mitmproxy-5.0.1-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
-
