@@ -57,6 +57,7 @@
         - nfs-common
         - openconnect
         - psmisc
+        - python-pip
         - snapd
         - terminator
         - tree
@@ -67,6 +68,11 @@
         - lib32z1
         - software-properties-common
       update_cache: yes
+
+- name: Install boto3
+  pip:
+      name: boto3
+  become: false
 
 - name: Install docker-compose
   shell: |
