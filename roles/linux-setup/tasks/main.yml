@@ -89,3 +89,15 @@
       src: https://snapshots.mitmproxy.org/5.0.1/mitmproxy-5.0.1-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
+
+- name: Bluetooth config
+  lineinfile:
+      path: /etc/bluetooth/main.conf
+      regexp: '^ControllerMode'
+      line: 'ControllerMode = bredr'
+      insertafter: '^#ControllerMode'
+  register: bt_config
+
+- name: Restart the bluetooth service if config changed
+  command: systemctl restart bluetooth
+  when: bt_config.changed
