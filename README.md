@@ -4,7 +4,7 @@ Project to setup most tools that I use in a Linux environment.
 
 ## Supported platforms
 
-- Ubuntu 14+
+- Ubuntu 16+
 
 ## Apps
 
