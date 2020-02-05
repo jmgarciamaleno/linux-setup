@@ -63,16 +63,27 @@
         - tree
         - unzip
         - vim
-        - wine-stable
         - libc6-i386
         - lib32z1
         - software-properties-common
       update_cache: yes
 
+- name: Install Ubuntu 16 specific apt packages
+  apt:
+      name:
+        - vim-gnome
+        - wine
+  when: ansible_distribution_major_version == 16
+
+- name: Install Ubuntu 19 specific apt packages
+  apt:
+      name: wine-stable
+  when: ansible_distribution_major_version == 19
+
 - name: Install boto3
   pip:
       name: boto3
-  become: false
+      extra_args: --user
 
 - name: Install docker-compose
   shell: |
