@@ -1,6 +1,6 @@
 # Linux-setup
 
-Project to setup most tools that I use in a Linux environment.
+Project to setup most of the tools that I use in a Linux desktop environment.
 
 ## Supported platforms
 
@@ -8,16 +8,17 @@ Project to setup most tools that I use in a Linux environment.
 
 ## Apps
 
-- Common shell tools (vim, curl, tree, etc)
-- Terminator
-- Git
 - Ansible
 - Docker + docker-compose
+- Git
+- Google Chrome stable
+- Mitmproxy
+- Shell tools (vim, curl, tree, etc)
+- Skype
 - Slack
 - Spotify
-- Skype
 - Openconnect VPN client
-- Mitmproxy
+- Terminator
 
 ## Install
 
