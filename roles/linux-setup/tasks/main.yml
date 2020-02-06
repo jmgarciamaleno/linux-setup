@@ -43,6 +43,7 @@
         - ca-certificates
         - chrome-gnome-shell
         - containerd.io
+        - cowsay
         - curl
         - docker-ce
         - docker-ce-cli
