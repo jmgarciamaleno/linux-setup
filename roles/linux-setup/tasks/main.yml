@@ -77,13 +77,17 @@
 
 - name: Install Ubuntu 18 specific apt packages
   apt:
-      name: vim-gnome
+      name:
+        - vim-gnome
+        - wine-stable
   when: ansible_distribution_major_version == '18'
 
-- name: Install Ubuntu 18+ specific apt packages
+- name: Install Ubuntu 19 specific apt packages
   apt:
-      name: wine-stable
-  when: ansible_distribution_major_version == '18' or ansible_distribution_major_version == '19'
+      name:
+        - vim-gtk
+        - wine-stable
+  when: ansible_distribution_major_version == '19'
 
 - name: Install boto3
   pip:
