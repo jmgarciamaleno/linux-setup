@@ -98,7 +98,8 @@
 - name: Install docker-compose
   shell: |
       curl -sL "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" \
-          -o /usr/local/bin/docker-compose
+          -o /usr/local/bin/docker-compose && \
+      chmod a+x /usr/local/bin/docker-compose
   args:
       executable: /bin/bash
       warn: no
@@ -116,6 +117,8 @@
       src: https://snapshots.mitmproxy.org/5.0.1/mitmproxy-5.0.1-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
+      owner: root
+      group: root
 
 - name: Bluetooth config
   lineinfile:
